@@ -1,0 +1,111 @@
+global:
+  scrape_interval: 60s
+
+scrape_configs:
+  - job_name: 'rabbitmq-aws-cluster'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics'
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+  - job_name: 'rabbitmq-connection-churn'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['connection_churn_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+
+  - job_name: 'rabbitmq-ra'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['ra_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+
+  - job_name: 'rabbitmq-queue'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['queue_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+
+  - job_name: 'rabbitmq-exchange'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['exchange_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+
+  - job_name: 'rabbitmq-connection'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['connection_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+
+  - job_name: 'rabbitmq-channel'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['channel_metrics']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
+  - job_name: 'rabbitmq-exchange-count'
+    scheme: https
+    basic_auth:
+      username: <username>
+      password: <password>
+    metrics_path: '/metrics/detailed'
+    params:
+      family: ['exchange_names']
+    static_configs:
+      - targets:
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16001'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16002'
+        - '<your-broker-id>.mq-beta.ap-southeast-2.on.aws:16003'
